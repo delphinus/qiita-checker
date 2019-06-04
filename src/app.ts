@@ -4,7 +4,7 @@ import { chk } from './chk'
 
 const app = express()
 
-app.get('/_chk', chk)
+app.get('/', chk)
 app.get('/check', check)
 
 const PORT = process.env.PORT || 8080

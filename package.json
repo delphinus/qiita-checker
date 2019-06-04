@@ -10,7 +10,7 @@
     "build": "tsc",
     "deploy": "gcloud app deploy",
     "gcp-build": "tsc",
-    "lint": "eslint --fix src/**/*.ts bin/**/*.ts",
+    "lint": "eslint --fix src/**/*.ts",
     "prepare": "npm run gcp-build",
     "pretest": "npm run gcp-build",
     "start": "node dist/app.js",
@@ -35,6 +35,13 @@
   },
   "jest": {
     "preset": "ts-jest"
+  },
+  "cloud-repo-tools": {
+      "test": {
+          "app": {
+              "msg": "Hello, World!"
+          }
+      }
   },
   "devDependencies": {
     "@google-cloud/nodejs-repo-tools": "^3.3.0",
