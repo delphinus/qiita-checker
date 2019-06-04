@@ -2,7 +2,7 @@
   "name": "qiita-checker",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/app.js",
   "engines": {
     "node": ">=10"
   },

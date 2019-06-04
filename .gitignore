@@ -142,3 +142,5 @@ tags
 [._]*.un~
 
 
+## custom rules
+/dist
