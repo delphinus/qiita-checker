@@ -37,11 +37,11 @@
     "preset": "ts-jest"
   },
   "cloud-repo-tools": {
-      "test": {
-          "app": {
-              "msg": "Hello, World!"
-          }
+    "test": {
+      "app": {
+        "msg": "Hello, World!"
       }
+    }
   },
   "devDependencies": {
     "@google-cloud/nodejs-repo-tools": "^3.3.0",
