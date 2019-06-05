@@ -66,6 +66,7 @@
   },
   "dependencies": {
     "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
     "got": "^9.6.0",
     "js-yaml": "^3.13.1"
   }
