@@ -1,3 +1,7 @@
 ---
 runtime: nodejs10
 service: qiita-checker
+handlers:
+  - url: /.*
+    secure: always
+    script: auto
