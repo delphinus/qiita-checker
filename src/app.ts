@@ -1,12 +1,19 @@
-import express from 'express'
-import asyncHandler from 'express-async-handler'
+import express, { RequestHandler, ErrorRequestHandler } from 'express'
 import { check } from './check'
 import { chk } from './chk'
 
 const app = express()
 
-app.get('/', asyncHandler(chk))
-app.get('/check', asyncHandler(check))
+const awaitHandler = (handler: RequestHandler): RequestHandler => async (req, res, next) =>
+  Promise.resolve(handler(req, res, next)).catch(next)
+
+app.get('/', awaitHandler(chk))
+app.get('/check', awaitHandler(check))
+
+const errorLogger: ErrorRequestHandler = (err, req, res, next) => {
+  console.error(err)
+  next(err)
+}
 
 const PORT = process.env.PORT || 8080
 app.listen(PORT, () => {
