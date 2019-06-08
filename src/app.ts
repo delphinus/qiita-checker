@@ -14,6 +14,7 @@ const errorLogger: ErrorRequestHandler = (err, req, res, next) => {
   console.error(err)
   next(err)
 }
+app.use(errorLogger)
 
 const PORT = process.env.PORT || 8080
 app.listen(PORT, () => {
