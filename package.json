@@ -8,7 +8,9 @@
   },
   "scripts": {
     "build": "tsc",
+    "decrypt": "gcloud kms decrypt --location asia-northeast1 --keyring qiita-checker --key default --ciphertext-file secrets.enc --plaintext-file secrets.yaml",
     "deploy": "gcloud app deploy",
+    "encrypt": "gcloud kms encrypt --location asia-northeast1 --keyring qiita-checker --key default --ciphertext-file secrets.enc --plaintext-file secrets.yaml",
     "gcp-build": "tsc",
     "lint": "eslint --fix src/**/*.ts",
     "prepare": "npm run gcp-build",
