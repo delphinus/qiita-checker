@@ -3,7 +3,13 @@ import yaml from 'js-yaml'
 import { isObject } from './isObject'
 
 interface SecretsYAML {
+  qiita: Qiita
   session: Session
+}
+
+interface Qiita {
+  clientId: string
+  clientSecret: string
 }
 
 interface Session {
@@ -14,12 +20,16 @@ interface Session {
 const isSecretsYAML = (yaml: any): yaml is SecretsYAML =>
   typeof yaml !== 'undefined' &&
   yaml !== null &&
+  isObject(yaml.qiita) &&
+  typeof yaml.qiita.clientId === 'string' &&
+  typeof yaml.qiita.clientSecret === 'string' &&
   isObject(yaml.session) &&
   typeof yaml.session.kind === 'string' &&
   typeof yaml.session.secret === 'string'
 
 export class Secrets {
   private static instance: Secrets | undefined
+  qiita: Qiita
   session: Session
 
   static async load() {
@@ -35,6 +45,7 @@ export class Secrets {
   }
 
   private constructor(loaded: SecretsYAML) {
+    this.qiita = loaded.qiita
     this.session = loaded.session
   }
 }
