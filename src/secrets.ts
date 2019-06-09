@@ -3,21 +3,21 @@ import yaml from 'js-yaml'
 import { isObject } from './isObject'
 
 interface SecretsYAML {
-  qiita: Qiita
+  session: Session
 }
 
-interface Qiita {
-  token: string
+interface Session {
+  secret: string
 }
 
 const isSecretsYAML = (yaml: any): yaml is SecretsYAML =>
   typeof yaml !== 'undefined' &&
   yaml !== null &&
-  isObject(yaml.qiita) &&
-  typeof yaml.qiita.token === 'string'
+  isObject(yaml.session) &&
+  typeof yaml.session.secret === 'string'
 
 export class Secrets {
-  qiita: Qiita
+  session: Session
 
   static async load() {
     const text = await promises.readFile('./secrets.yaml', 'utf8')
@@ -29,6 +29,6 @@ export class Secrets {
   }
 
   private constructor(loaded: SecretsYAML) {
-    this.qiita = loaded.qiita
+    this.session = loaded.session
   }
 }
