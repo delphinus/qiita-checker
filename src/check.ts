@@ -4,8 +4,10 @@ import { Qiita } from './qiita'
 
 export const check: RequestHandler = async (req, res) => {
   const secrets = await Secrets.load()
-  const qiita = new Qiita(secrets.qiita.token)
-  const json = await qiita.get('/api/v2/authenticated_user/items')
+  // TODO: disable temporarily
+  // const qiita = new Qiita(secrets.qiita.token)
+  // const json = await qiita.get('/api/v2/authenticated_user/items')
+  const json = {}
   res
     .status(200)
     .send(JSON.stringify(json))
