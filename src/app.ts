@@ -19,7 +19,7 @@ const errorLogger: ErrorRequestHandler = (err, req, res, next) => {
   app.use(
     session({
       store: new FirestoreStore({
-        dataset: new FirestoreStore({
+        dataset: new Firestore({
           kind: secrets.session.kind
         })
       }),
