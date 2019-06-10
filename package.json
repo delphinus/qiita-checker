@@ -7,17 +7,17 @@
     "node": ">=10"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "rm -fr dist && npm run lint && tsc",
     "decrypt": "gcloud kms decrypt --location asia-northeast1 --keyring qiita-checker --key default --ciphertext-file secrets.enc --plaintext-file secrets.yaml",
     "deploy": "gcloud app deploy",
     "encrypt": "gcloud kms encrypt --location asia-northeast1 --keyring qiita-checker --key default --ciphertext-file secrets.enc --plaintext-file secrets.yaml",
-    "gcp-build": "tsc",
+    "gcp-build": "npm run build",
     "lint": "eslint --fix src/**/*.ts",
     "prepare": "npm run gcp-build",
     "pretest": "npm run gcp-build",
     "start": "node dist/app.js",
     "system-test": "repo-tools test app -- dist/app.js",
-    "test": "npm run lint && npm run unit-test && npm run system-test",
+    "test": "npm run unit-test && npm run system-test",
     "unit-test": "jest --passWithNoTests"
   },
   "author": "",
@@ -72,6 +72,7 @@
   "dependencies": {
     "@google-cloud/connect-firestore": "^1.0.1",
     "@google-cloud/firestore": "^2.2.0",
+    "ejs": "^2.6.1",
     "express": "^4.17.1",
     "express-session": "^1.16.1",
     "got": "^9.6.0",
