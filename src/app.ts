@@ -4,9 +4,11 @@ import { Firestore } from '@google-cloud/firestore'
 import { FirestoreStore } from '@google-cloud/connect-firestore'
 import { check } from './check'
 import { chk } from './chk'
+import { index } from './index'
 import { Secrets } from './secrets'
 
 const app = express()
+app.set('view engine', 'ejs')
 const awaitHandler = (handler: RequestHandler): RequestHandler => async (req, res, next) =>
   Promise.resolve(handler(req, res, next)).catch(next)
 const PORT = process.env.PORT || 8080
@@ -29,7 +31,8 @@ const errorLogger: ErrorRequestHandler = (err, req, res, next) => {
     })
   )
 
-  app.get('/', awaitHandler(chk))
+  app.get('/', awaitHandler(index))
+  app.get('/chk', awaitHandler(chk))
   app.get('/check', awaitHandler(check))
   app.use(errorLogger)
 
